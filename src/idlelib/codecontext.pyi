@@ -1,8 +1,7 @@
 from idlelib.config import idleConf as idleConf
 from idlelib.editor import EditorWindow
 from re import Pattern
-from tkinter import Event, Frame, Text
-from typing import Any
+from tkinter import Event, Frame, Misc, Text
 
 BLOCKOPENERS: set[str]
 
@@ -26,7 +25,7 @@ class CodeContext:
     context: Text | None
     def toggle_code_context_event(
         self,
-        event: Event[Any] | None = ...,
+        event: Event[Misc] | None = ...,
     ) -> str: ...
     def get_context(
         self,
@@ -36,7 +35,7 @@ class CodeContext:
     ) -> tuple[list[tuple[int, int, str, str | bool]], int]: ...
     topvisible: int
     def update_code_context(self) -> None: ...
-    def jumptoline(self, event: Event[Any] | None = ...) -> None: ...
+    def jumptoline(self, event: Event[Misc] | None = ...) -> None: ...
     def timer_event(self) -> None: ...
     def update_font(self) -> None: ...
     def update_highlight_colors(self) -> None: ...

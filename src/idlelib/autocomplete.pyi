@@ -2,8 +2,7 @@ from idlelib import autocomplete_w as autocomplete_w
 from idlelib.config import idleConf as idleConf
 from idlelib.editor import EditorWindow
 from idlelib.hyperparser import HyperParser as HyperParser
-from tkinter import Event, Text
-from typing import Any
+from tkinter import Event, Misc, Text
 
 completion_kwds: list[str]
 ATTRS: int
@@ -30,12 +29,12 @@ class AutoComplete:
     def reload(cls) -> None: ...
     def force_open_completions_event(
         self,
-        event: Event[Any] | None,
+        event: Event[Misc] | None,
     ) -> str: ...
-    def autocomplete_event(self, event: Event[Any] | None) -> str | None: ...
+    def autocomplete_event(self, event: Event[Misc] | None) -> str | None: ...
     def try_open_completions_event(
         self,
-        event: Event[Any] | None = ...,
+        event: Event[Misc] | None = ...,
     ) -> None: ...
     def open_completions(
         self,

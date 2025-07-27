@@ -1,6 +1,5 @@
 from idlelib.tooltip import TooltipBase as TooltipBase
-from tkinter import Event, Label, Text
-from typing import Any
+from tkinter import Event, Label, Misc, Text
 
 HIDE_EVENT: str
 HIDE_SEQUENCES: tuple[str, str]
@@ -24,7 +23,7 @@ class CalltipWindow(TooltipBase):
     def showcontents(self) -> None: ...
     def checkhide_event(
         self,
-        event: Event[Any] | None = ...,
+        event: Event[Misc] | None = ...,
     ) -> str | None: ...
-    def hide_event(self, event: Event[Any]) -> str | None: ...
+    def hide_event(self, event: Event[Misc]) -> str | None: ...
     def hidetip(self) -> None: ...

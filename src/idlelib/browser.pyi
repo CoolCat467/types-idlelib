@@ -8,8 +8,7 @@ from idlelib.tree import (
 )
 from idlelib.util import py_extensions as py_extensions
 from idlelib.window import ListedToplevel as ListedToplevel
-from tkinter import Event, Tk
-from typing import Any
+from tkinter import Event, Misc, Tk
 
 file_open: Callable[
     [str, bool | None],
@@ -34,7 +33,7 @@ class ModuleBrowser:
         _htest: bool = ...,
         _utest: bool = ...,
     ) -> None: ...
-    def close(self, event: Event[Any] | None = ...) -> None: ...
+    def close(self, event: Event[Misc] | None = ...) -> None: ...
     top: ListedToplevel
     node: TreeNode
     def init(self) -> None: ...
