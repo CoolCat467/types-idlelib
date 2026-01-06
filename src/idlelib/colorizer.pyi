@@ -1,3 +1,4 @@
+from _tkinter import Tcl_Obj
 from collections.abc import Generator, Iterable
 from idlelib.config import idleConf as idleConf
 from idlelib.delegator import Delegator as Delegator
@@ -47,3 +48,19 @@ class ColorDelegator(Delegator):
     def recolorize(self) -> None: ...
     def recolorize_main(self) -> None: ...
     def removecolors(self) -> None: ...
+    def _add_tags_in_section(self, chars: str, head: str) -> None: ...
+    def _add_tag(
+        self,
+        start: int,
+        end: int,
+        head: str,
+        matched_group_name: str,
+    ) -> None: ...
+
+    # tag_add = Text.tag_add
+    def tag_add(
+        self,
+        tagName: str,
+        index1: Tcl_Obj | str | float | Misc,
+        *args: Tcl_Obj | str | float | Misc,
+    ) -> None: ...
