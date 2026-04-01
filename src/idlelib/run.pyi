@@ -126,7 +126,7 @@ class Executive:
         what: str,
         mode: int,
     ) -> tuple[list[str], list[str]]: ...
-    def stackviewer(  # noqa: F811
+    def stackviewer(
         self,
         flist_oid: str | None = ...,
     ) -> int: ...
