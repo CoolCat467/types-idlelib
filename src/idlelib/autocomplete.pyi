@@ -19,7 +19,8 @@ class AutoComplete:
     editwin: EditorWindow | None
     text: Text | None
     tags: None | str
-    autocompletewindow: None
+    autocompletewindow: autocomplete_w.AutoCompleteWindow | None
+    popupwait: int
     def __init__(
         self,
         editwin: EditorWindow | None = ...,

@@ -6,6 +6,7 @@ from idlelib.filelist import FileList
 from idlelib.pyshell import PyShellEditorWindow
 from idlelib.scrolledlist import ScrolledList as ScrolledList
 from idlelib.window import ListedToplevel as ListedToplevel
+from tkinter import *  # noqa: F403
 from tkinter import (
     BaseWidget,
     BooleanVar,
@@ -20,7 +21,7 @@ from tkinter import (
     Tk,
 )
 from types import CodeType, FrameType, TracebackType
-from typing import Any
+from typing import Literal
 
 class Idb(bdb.Bdb):
     gui: Debugger
@@ -29,9 +30,11 @@ class Idb(bdb.Bdb):
     def user_exception(
         self,
         frame: FrameType,
-        info: tuple[type[BaseException], BaseException, TracebackType],
+        exc_info: tuple[type[BaseException], BaseException, TracebackType],
     ) -> None: ...
-    def in_rpc_code(self, frame: FrameType) -> bool: ...
+
+def _in_rpc_code(frame: FrameType) -> bool: ...
+def _frame2message(frame: FrameType) -> str: ...
 
 class Debugger:
     vstack: BooleanVar | None
@@ -52,7 +55,7 @@ class Debugger:
         self,
         *args: str | CodeType | dict[str, object] | None,
     ) -> None: ...
-    stackviewer: StackViewer
+    stackviewer: StackViewer | None
     def close(self, event: Event[Misc] | None = ...) -> None: ...
     flist: FileList
     root: Tk
@@ -93,13 +96,13 @@ class Debugger:
     def show_stack(self) -> None: ...
     def show_source(self) -> None: ...
     def show_frame(self, stackitem: tuple[FrameType, int]) -> None: ...
-    localsviewer: NamespaceViewer
-    globalsviewer: NamespaceViewer
+    localsviewer: NamespaceViewer | None
+    globalsviewer: NamespaceViewer | None
     def show_locals(self) -> None: ...
     def show_globals(self) -> None: ...
     def show_variables(self, force: int = ...) -> None: ...
-    def set_breakpoint_here(self, filename: str, lineno: int) -> None: ...
-    def clear_breakpoint_here(self, filename: str, lineno: int) -> None: ...
+    def set_breakpoint(self, filename: str, lineno: int) -> None: ...
+    def clear_breakpoint(self, filename: str, lineno: int) -> None: ...
     def clear_file_breaks(self, filename: str) -> None: ...
     def load_breakpoints(self) -> None: ...
 
@@ -140,13 +143,13 @@ class NamespaceViewer:
         self,
         master: BaseWidget,
         title: str,
-        dict: dict[str, Any] | None = ...,
+        odict: dict[str, str] | None = ...,
     ) -> None: ...
+    prev_odict: dict[str, str] | Literal[-1]
     def load_dict(
         self,
-        dict: dict[str, Any],
+        odict: dict[str, str],
         force: int = ...,
         rpc_client: rpc.RPCClient | None = ...,
     ) -> None: ...
-    dict: dict[str, Any]
     def close(self) -> None: ...

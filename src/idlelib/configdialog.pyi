@@ -8,7 +8,7 @@ from idlelib.config import (
     IdleUserConfParser,
     idleConf as idleConf,
 )
-from idlelib.config_key import GetKeysDialog as GetKeysDialog
+from idlelib.config_key import GetKeysWindow as GetKeysWindow
 from idlelib.dynoption import DynOptionMenu as DynOptionMenu
 from idlelib.format import FormatParagraph as FormatParagraph
 from idlelib.parenmatch import ParenMatch as ParenMatch
@@ -48,11 +48,11 @@ from mypy_extensions import VarArg
 
 changes: ConfigChanges
 reloadables: tuple[
-    AutoComplete,
-    CodeContext,
-    ParenMatch,
-    FormatParagraph,
-    Squeezer,
+    type[AutoComplete],
+    type[CodeContext],
+    type[ParenMatch],
+    type[FormatParagraph],
+    type[Squeezer],
 ]
 
 class ConfigDialog(Toplevel):

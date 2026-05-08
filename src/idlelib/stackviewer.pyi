@@ -13,8 +13,8 @@ from types import FrameType, TracebackType
 
 def StackBrowser(
     root: Misc,
+    exc: BaseException,
     flist: PyShellFileList | None = ...,
-    tb: TracebackType | None = ...,
     top: Toplevel | None = ...,
 ) -> None: ...
 
@@ -24,11 +24,10 @@ class StackTreeItem(TreeItem):
     text: str
     def __init__(
         self,
+        exc: BaseException,
         flist: PyShellFileList | None = ...,
-        tb: TracebackType | None = ...,
     ) -> None: ...
     def get_stack(self, tb: TracebackType) -> list[tuple[FrameType, int]]: ...
-    def get_exception(self) -> str: ...
     def GetText(self) -> str: ...
     def GetSubList(self) -> list[TreeItem]: ...
 

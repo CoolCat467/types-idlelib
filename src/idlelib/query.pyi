@@ -1,4 +1,4 @@
-from collections.abc import Callable, Container
+from collections.abc import Container
 from tkinter import (
     BooleanVar,
     Button,
@@ -98,7 +98,7 @@ class HelpSource(Query):
         initfile: str,
     ) -> str: ...
     def browse_file(self) -> None: ...
-    item_ok: Callable[[], str | None]
+    item_ok = SectionName.entry_ok
     def path_ok(self) -> str | None: ...
     def entry_ok(self) -> str | None: ...
 

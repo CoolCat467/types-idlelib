@@ -38,12 +38,14 @@ from idlelib.tree import wheel_event as wheel_event
 from idlelib.undo import UndoDelegator as UndoDelegator
 from idlelib.util import py_extensions as py_extensions
 from idlelib.zoomheight import ZoomHeight as ZoomHeight
+from tkinter import *  # noqa: F403
 from tkinter import Event, Frame, Menu, Misc, Scrollbar, Text, Variable
 from typing import Any
 
 from mypy_extensions import DefaultNamedArg, KwArg
 
 TK_TABWIDTH_DEFAULT: int
+_py_version: str
 darwin: bool
 
 class EditorWindow:
@@ -208,7 +210,7 @@ class EditorWindow:
     ) -> None: ...
     def get_var_obj(
         self,
-        name: str,
+        eventname: str,
         vartype: Variable | None = ...,
     ) -> str | int | float | bool: ...
     def is_char_in_string(self, text_index: str) -> bool: ...
@@ -260,7 +262,7 @@ class IndentSearcher:
     finished: int
     blkopenline: bool | None
     indentedline: bool | None
-    def __init__(self, text: Text, tabwidth: int) -> None: ...
+    def __init__(self, text: Text) -> None: ...
     def readline(self) -> str: ...
     def tokeneater(
         self,
@@ -273,7 +275,7 @@ class IndentSearcher:
         NAME: int = ...,
         OPENERS: tuple[str, ...] = ...,
     ) -> None: ...
-    def run(self) -> bool | None: ...
+    def run(self) -> tuple[bool | None, bool | None]: ...
 
 def prepstr(s: str) -> tuple[int, str]: ...
 

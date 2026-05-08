@@ -1,11 +1,10 @@
 from _sitebuiltins import _Printer
 from idlelib import textview as textview
 from tkinter import Button, Event, Misc, PhotoImage, Toplevel
-from typing import Any
+from typing import Any, Literal
 
-version: str
-
-def build_bits() -> str: ...
+pyver: str
+bits: Literal["32" | "64"]
 
 class AboutDialog(Toplevel):
     bg: str

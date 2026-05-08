@@ -15,6 +15,8 @@ from tkinter import Misc, Tk
 from types import TracebackType
 from typing import Any
 
+mod: str
+firstrun: bool
 LOCALHOST: str
 eof: str
 

@@ -1,8 +1,9 @@
-from tkinter import BaseWidget, Widget
+from tkinter import *  # noqa: F403
+from tkinter import Event, Misc, Toplevel, Widget
 
 class TooltipBase:
     anchor_widget: Widget
-    tipwindow: BaseWidget | None
+    tipwindow: Toplevel | None
     def __init__(self, anchor_widget: Widget) -> None: ...
     def __del__(self) -> None: ...
     def showtip(self) -> None: ...
@@ -13,22 +14,32 @@ class TooltipBase:
 
 class OnHoverTooltipBase(TooltipBase):
     hover_delay: int
+    _after_id: int | None
+    _id1: int
+    _id2: int
+    _id3: int
     def __init__(
         self,
         anchor_widget: Widget,
         hover_delay: int = ...,
     ) -> None: ...
     def __del__(self) -> None: ...
+    def _show_event(self, event: Event[Misc] | None = ...) -> None: ...
+    def _hide_event(self, event: Event[Misc] | None = ...) -> None: ...
     def schedule(self) -> None: ...
     def unschedule(self) -> None: ...
     def hidetip(self) -> None: ...
 
 class Hovertip(OnHoverTooltipBase):
     text: str
+    foreground: str
+    background: str
     def __init__(
         self,
         anchor_widget: Widget,
         text: str,
         hover_delay: int = ...,
+        foreground: str = ...,
+        background: str = ...,
     ) -> None: ...
     def showcontents(self) -> None: ...

@@ -12,7 +12,7 @@ AVAILABLE_KEYS: tuple[str, ...]
 
 def translate_key(key: str, modifiers: Container[str]) -> str: ...
 
-class GetKeysDialog(Toplevel):
+class GetKeysFrame(Frame):
     keyerror_title: str
     parent: Misc
     action: str
@@ -24,17 +24,11 @@ class GetKeysDialog(Toplevel):
     def __init__(
         self,
         parent: Misc,
-        title: str,
         action: str,
         current_key_sequences: list[str],
-        *,
-        _htest: bool = ...,
-        _utest: bool = ...,
     ) -> None: ...
     def showerror(self, *args: Misc, **kwargs: Misc) -> None: ...
     frame: Frame  # type: ignore[assignment]
-    button_ok: Button
-    button_cancel: Button
     frame_keyseq_basic: Frame
     frame_controls_basic: Frame
     modifier_checkbuttons: dict[str, Checkbutton]
@@ -53,7 +47,27 @@ class GetKeysDialog(Toplevel):
     def build_key_string(self) -> None: ...
     def get_modifiers(self) -> list[str]: ...
     def clear_key_seq(self) -> None: ...
-    def ok(self, event: Event[Misc] | None = ...) -> None: ...
-    def cancel(self, event: Event[Misc] | None = ...) -> None: ...
+    def ok(self) -> None: ...
     def keys_ok(self, keys: str) -> bool: ...
     def bind_ok(self, keys: str) -> bool: ...
+
+class GetKeysWindow(Toplevel):
+    frame: GetKeysFrame  # type: ignore[assignment]
+    button_ok: Button
+    button_cancel: Button
+    def __init__(
+        self,
+        parent: str,
+        title: str,
+        action: list[str],
+        current_key_sequences: list[str],
+        *,
+        _htest: bool = False,
+        _utest: bool = False,
+    ) -> None: ...
+    @property
+    def result(self) -> str: ...
+    @result.setter
+    def result(self, value: str) -> None: ...
+    def ok(self, event: Event[Misc] | None = ...) -> None: ...
+    def cancel(self, event: Event[Misc] | None = ...) -> None: ...

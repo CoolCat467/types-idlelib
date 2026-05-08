@@ -26,7 +26,7 @@ class ObjectTreeItem(TreeItem):
     def __init__(
         self,
         labeltext: str | None,
-        object: int
+        object_: int
         | float
         | str
         | tuple[_Object, ...]
@@ -41,7 +41,7 @@ class ClassTreeItem(ObjectTreeItem):
     def __init__(
         self,
         labeltext: str | None,
-        object: type,
+        object_: type,
         setfunction: Callable[[_Object], None] | None = ...,
     ) -> None: ...
     def IsExpandable(self) -> bool: ...
@@ -52,7 +52,7 @@ class AtomicObjectTreeItem(ObjectTreeItem):
     def __init__(
         self,
         labeltext: str | None,
-        object: str | int | float,
+        object_: str | int | float,
         setfunction: Callable[[_Object], None] | None = ...,
     ) -> None: ...
     def IsExpandable(self) -> bool: ...
@@ -63,7 +63,7 @@ class SequenceTreeItem(ObjectTreeItem):
     def __init__(
         self,
         labeltext: str | None,
-        object: Sequence[_Object],
+        object_: Sequence[_Object],
         setfunction: Callable[[_Object], None] | None = ...,
     ) -> None: ...
     def IsExpandable(self) -> bool: ...
@@ -76,7 +76,7 @@ class DictTreeItem(SequenceTreeItem):
     def __init__(
         self,
         labeltext: str | None,
-        object: dict[Hashable, _Object],
+        object_: dict[Hashable, _Object],
         setfunction: Callable[[_Object], None] | None = ...,
     ) -> None: ...
     def keys(self) -> list[Hashable]: ...  # type: ignore[override]
@@ -85,6 +85,6 @@ dispatch: dict[type, ObjectTreeItem]
 
 def make_objecttreeitem(
     labeltext: str,
-    object: _Object,
+    object_: _Object,
     setfunction: Callable[[str], None] | None = ...,
 ) -> ObjectTreeItem: ...

@@ -55,8 +55,10 @@ class _SimpleBinder:
 
 def expand_substates(states: Iterable[int]) -> list[list[int]]: ...
 
+_state_codes: list[int]
 r: int
 s: int
+i: int
 
 class _ComplexBinder:
     type: int

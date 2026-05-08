@@ -14,6 +14,7 @@ class ZzDummy:
     editwin: EditorWindow
     text: Text
     formatter: FormatRegion
+    ztext: str
     def __init__(self, editwin: EditorWindow) -> None: ...
     @classmethod
     def reload(cls) -> None: ...

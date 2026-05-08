@@ -3,7 +3,8 @@ from collections.abc import Generator, Iterable
 from idlelib.config import idleConf as idleConf
 from idlelib.delegator import Delegator as Delegator
 from re import Match, Pattern
-from tkinter import Event, Misc, Text
+from tkinter import Event, Misc, Text, Widget
+from typing import override
 
 DEBUG: bool
 
@@ -19,7 +20,7 @@ def matched_named_groups(
 ) -> Generator[tuple[str, str]]: ...
 def color_config(text: Text) -> None: ...
 
-class ColorDelegator(Delegator):
+class ColorDelegator(Delegator, Text):
     prog: Pattern[str]
     idprog: Pattern[str]
     def __init__(self) -> None: ...
@@ -32,14 +33,23 @@ class ColorDelegator(Delegator):
     def config_colors(self) -> None: ...
     tagdefs: dict[str, dict[str, str | None]]
     def LoadTagDefs(self) -> None: ...
-    def insert(
+    @override
+    def insert(  # type: ignore[override]
         self,
-        index: str,
+        index: str | float | Tcl_Obj | Widget,
         chars: str,
         tags: str | None = ...,
     ) -> None: ...
-    def delete(self, index1: str, index2: str | None = ...) -> None: ...
-    def notify_range(self, index1: str, index2: str | None = ...) -> None: ...
+    def delete(
+        self,
+        index1: str | float | Tcl_Obj | Widget,
+        index2: str | float | Tcl_Obj | Widget | None = ...,
+    ) -> None: ...
+    def notify_range(
+        self,
+        index1: str | float | Tcl_Obj | Widget,
+        index2: str | float | Tcl_Obj | Widget | None = ...,
+    ) -> None: ...
     def close(self) -> None: ...
     def toggle_colorize_event(
         self,
@@ -55,12 +65,4 @@ class ColorDelegator(Delegator):
         end: int,
         head: str,
         matched_group_name: str,
-    ) -> None: ...
-
-    # tag_add = Text.tag_add
-    def tag_add(
-        self,
-        tagName: str,
-        index1: Tcl_Obj | str | float | Misc,
-        *args: Tcl_Obj | str | float | Misc,
     ) -> None: ...
