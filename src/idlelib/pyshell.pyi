@@ -90,7 +90,7 @@ class PyShellEditorWindow(EditorWindow):
     ) -> list[int]: ...
 
 class PyShellFileList(FileList):
-    EditorWindow: type[PyShellEditorWindow]  # type: ignore[override]
+    EditorWindow: type[PyShellEditorWindow]  # type: ignore[mutable-override]
     pyshell: PyShell | None
     def open_shell(
         self,

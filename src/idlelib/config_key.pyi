@@ -28,7 +28,7 @@ class GetKeysFrame(Frame):
         current_key_sequences: list[str],
     ) -> None: ...
     def showerror(self, *args: Misc, **kwargs: Misc) -> None: ...
-    frame: Frame  # type: ignore[assignment]
+    frame: Frame
     frame_keyseq_basic: Frame
     frame_controls_basic: Frame
     modifier_checkbuttons: dict[str, Checkbutton]
