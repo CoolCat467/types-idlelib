@@ -18,7 +18,7 @@ TRIGGERS: str
 class AutoComplete:
     editwin: EditorWindow | None
     text: Text | None
-    tags: None | str
+    tags: str | None
     autocompletewindow: autocomplete_w.AutoCompleteWindow | None
     popupwait: int
     def __init__(
@@ -39,7 +39,7 @@ class AutoComplete:
     ) -> None: ...
     def open_completions(
         self,
-        args: tuple[bool, bool, bool, None | int],
+        args: tuple[bool, bool, bool, int | None],
     ) -> bool | None: ...
     def fetch_completions(
         self,
