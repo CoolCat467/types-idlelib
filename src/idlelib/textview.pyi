@@ -1,5 +1,5 @@
 from idlelib.colorizer import color_config as color_config
-from tkinter import Event, Toplevel
+from tkinter import Event, Misc, Toplevel
 from tkinter.ttk import Button, Frame, Scrollbar, Widget
 from typing import Any
 
@@ -28,7 +28,7 @@ class ViewFrame(Frame):
         contents: str,
         wrap: str = ...,
     ) -> None: ...
-    def ok(self, event: Event[Any] | None = ...) -> None: ...
+    def ok(self, event: Event[Misc] | None = ...) -> None: ...
 
 class ViewWindow(Toplevel):
     viewframe: ViewFrame
@@ -45,7 +45,7 @@ class ViewWindow(Toplevel):
         _htest: bool = ...,
         _utest: bool = ...,
     ) -> None: ...
-    def ok(self, event: Event[Any] | None = ...) -> None: ...
+    def ok(self, event: Event[Misc] | None = ...) -> None: ...
 
 def view_text(
     parent: Widget,

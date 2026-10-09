@@ -38,18 +38,18 @@ class _SimpleBinder:
     sequence: str
     widget: Misc
     widgetinst: Misc
-    bindedfuncs: list[Callable[[Event[Any]], str | None]]
+    bindedfuncs: list[Callable[[Event[Misc]], str | None]]
     handlerid: str | None
     def __init__(self, type: int, widget: Misc, widgetinst: Misc) -> None: ...
     def bind(
         self,
         triplet: tuple[int, int, str],
-        func: Callable[[Event[Any]], str | None],
+        func: Callable[[Event[Misc]], str | None],
     ) -> None: ...
     def unbind(
         self,
         triplet: tuple[int, int, str],
-        func: Callable[[Event[Any]], str | None],
+        func: Callable[[Event[Misc]], str | None],
     ) -> None: ...
     def __del__(self) -> None: ...
 
@@ -67,7 +67,7 @@ class _ComplexBinder:
     widgetinst: Misc
     bindedfuncs: dict[
         str | None,
-        list[list[Callable[[Event[Any]], str | None]]],
+        list[list[Callable[[Event[Misc]], str | None]]],
     ]
     handlerids: list[tuple[str, str]]
     ishandlerrunning: list[list[bool]]
@@ -76,12 +76,12 @@ class _ComplexBinder:
     def bind(
         self,
         triplet: tuple[int, int, str],
-        func: Callable[[Event[Any]], str | None],
+        func: Callable[[Event[Misc]], str | None],
     ) -> None: ...
     def unbind(
         self,
         triplet: tuple[int, int, str],
-        func: Callable[[Event[Any]], str | None],
+        func: Callable[[Event[Misc]], str | None],
     ) -> None: ...
     def __del__(self) -> None: ...
 

@@ -7,11 +7,11 @@ from tkinter import (
     Event,
     Frame,
     Label,
+    Misc,
     Text,
     Tk,
     Variable,
 )
-from typing import Any
 
 class SearchDialogBase:
     title: str
@@ -24,7 +24,7 @@ class SearchDialogBase:
     def __init__(self, root: Tk, engine: SearchEngine) -> None: ...
     text: Text
     def open(self, text: Text, searchphrase: str | None = ...) -> None: ...
-    def close(self, event: Event[Any] | None = ...) -> None: ...
+    def close(self, event: Event[Misc] | None = ...) -> None: ...
     frame: Frame
     row: int
     def create_widgets(self) -> None: ...
@@ -46,7 +46,7 @@ class SearchDialogBase:
     def make_button(
         self,
         label: str,
-        command: Callable[[Event[Any] | None], object],
+        command: Callable[[Event[Misc] | None], object],
         isdef: int = ...,
     ) -> Button: ...
     def create_command_buttons(self) -> None: ...
